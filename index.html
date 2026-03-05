@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Silsila — منصة النقل البري</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Silsila منصة النقل البري: طلبات شحن، ناقلين معتمدين، تتبع، وإدارة عمليات النقل بسهولة وأمان." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Silsila — منصة النقل البري" />
+  <meta property="og:description" content="طلبات شحن، ناقلين معتمدين، تتبع، وإدارة عمليات النقل بسهولة وأمان." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://silsila.app" />
+
+  <style>
+    :root{
+      --bg1:#071c2c;
+      --bg2:#06263b;
+      --card:#0b2f46cc;
+      --card2:#0c3550cc;
+      --line:#1b4965;
+      --txt:#e8f4ff;
+      --muted:#a9c4d6;
+      --brand:#25c2ff;
+      --brand2:#2f7cff;
+      --ok:#18c77c;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      color:var(--txt);
+      background:
+        radial-gradient(1200px 600px at 50% -10%, rgba(37,194,255,.25), transparent 60%),
+        radial-gradient(900px 500px at 20% 30%, rgba(47,124,255,.16), transparent 55%),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:14px 16px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(7,28,44,.35);
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:40px;height:40px;border-radius:12px;
+      background: linear-gradient(135deg, rgba(37,194,255,.28), rgba(47,124,255,.28));
+      border:1px solid rgba(255,255,255,.18);
+      display:grid; place-items:center;
+    }
+    .logo svg{width:24px;height:24px;opacity:.95}
+    .nav{
+      display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+      font-weight:600; color:var(--muted);
+    }
+    .nav a{ text-decoration:none; padding:8px 10px; border-radius:999px; }
+    .nav a:hover{ background:rgba(255,255,255,.06); color:var(--txt); }
+
+    .lang{
+      display:flex; gap:8px; align-items:center;
+      padding:6px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+    .lang button{
+      border:0; cursor:pointer;
+      padding:8px 12px;
+      border-radius:999px;
+      background:transparent;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .lang button.active{
+      background:rgba(255,255,255,.10);
+      color:var(--txt);
+      border:1px solid rgba(255,255,255,.14);
+    }
+
+    .hero{
+      margin-top:22px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .card{
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, var(--card), var(--card2));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-left{padding:28px}
+    .kicker{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 12px; border-radius:999px;
+      background:rgba(24,199,124,.12);
+      border:1px solid rgba(24,199,124,.25);
+      color:#bff4de; font-weight:800; font-size:13px;
+    }
+    .kicker .dot{width:8px;height:8px;border-radius:99px;background:var(--ok)}
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.1;
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size: clamp(14px, 1.35vw, 18px);
+      line-height:1.7;
+      max-width: 58ch;
+    }
+    .cta{
+      margin-top:18px;
+      display:flex; gap:12px; flex-wrap:wrap; align-items:center;
+    }
+    .btn{
+      border:0; cursor:pointer; text-decoration:none;
+      padding:12px 16px; border-radius: 14px;
+      font-weight:900;
+      display:inline-flex; gap:10px; align-items:center; justify-content:center;
+      transition:transform .12s ease, filter .12s ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
+    .btn.primary{
+      background: linear-gradient(90deg,var(--brand),var(--brand2));
+      color:#05233a;
+    }
+    .btn.ghost{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      color:var(--txt);
+    }
+    .meta{
+      margin-top:14px;
+      display:flex; gap:16px; flex-wrap:wrap;
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+    }
+    .meta span{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px; border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .hero-right{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .mock{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(700px 240px at 40% 0%, rgba(37,194,255,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      padding:18px;
+      min-height: 320px;
+      position:relative;
+      overflow:hidden;
+    }
+    .mock .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+      font-weight:800; font-size:12px;
+    }
+    .mock h3{margin:12px 0 6px; font-size:18px}
+    .mock p{margin:0; color:var(--muted); line-height:1.7; font-weight:600}
+    .mock .bullets{
+      margin-top:12px;
+      display:grid; gap:10px;
+    }
+    .mock .b{
+      padding:10px 12px; border-radius:14px;
+      background:rgba(11,47,70,.55);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+      font-weight:700;
+      display:flex; justify-content:space-between; gap:10px;
+    }
+    .mock .b strong{color:var(--txt)}
+    .mock .tag{
+      padding:4px 8px; border-radius:999px;
+      background:rgba(24,199,124,.12);
+      border:1px solid rgba(24,199,124,.25);
+      color:#bff4de;
+      font-weight:900;
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    section{margin-top:18px}
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .feat{
+      padding:16px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+    .feat h4{margin:8px 0 6px; font-size:16px}
+    .feat p{margin:0; color:var(--muted); line-height:1.7; font-weight:600; font-size:14px}
+    .icon{
+      width:40px;height:40px;border-radius:14px;
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(37,194,255,.10);
+    }
+    .icon svg{width:22px;height:22px;opacity:.95}
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+
+    .faq{
+      padding:18px;
+    }
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius: 14px;
+      padding:12px 14px;
+      margin:10px 0;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      color:var(--txt);
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{
+      margin:10px 0 0;
+      color:var(--muted);
+      line-height:1.7;
+      font-weight:600;
+      font-size:14px;
+    }
+
+    footer{
+      margin:20px 0 10px;
+      padding:16px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+      font-weight:700;
+    }
+    footer a{color:var(--txt); text-decoration:none}
+    footer a:hover{text-decoration:underline}
+
+    /* language sections */
+    .langsec{display:none}
+    .langsec.active{display:block}
+
+    /* RTL/LTR toggles */
+    .rtl{direction:rtl; text-align:right}
+    .ltr{direction:ltr; text-align:left}
+
+    @media (max-width: 960px){
+      .hero{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .split{grid-template-columns:1fr}
+      .nav{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- simple truck mark -->
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3 7.5h10.5v9H3v-9Z" stroke="white" stroke-width="1.6"/>
+            <path d="M13.5 10h4.2l2.3 2.6V16.5h-6.5V10Z" stroke="white" stroke-width="1.6"/>
+            <path d="M6.5 18.5a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" stroke="white" stroke-width="1.6"/>
+            <path d="M17.2 18.5a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Z" stroke="white" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-size:14px;color:var(--muted);font-weight:800;">Silsila</div>
+          <div style="font-size:13px;color:var(--muted);font-weight:700;">منصة النقل البري</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#features" data-i18n="nav_features">المزايا</a>
+        <a href="#how" data-i18n="nav_how">كيف تعمل</a>
+        <a href="#security" data-i18n="nav_security">الأمان</a>
+        <a href="#faq" data-i18n="nav_faq">الأسئلة</a>
+      </nav>
+
+      <div class="lang" aria-label="Language switcher">
+        <button class="active" data-lang="ar">العربية</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="ur">اردو</button>
+      </div>
+    </div>
+
+    <!-- AR -->
+    <div class="langsec active rtl" id="sec-ar">
+      <div class="hero">
+        <div class="card hero-left">
+          <div class="kicker"><span class="dot"></span> جاهز للإطلاق • تجربة احترافية</div>
+          <h1>إدارة عمليات النقل بسهولة — من الطلب إلى التسليم</h1>
+          <p class="sub">
+            Silsila تربط بين مالك البضاعة والناقل في منصة واحدة: إنشاء طلبات الشحن، قبول الطلبات، تتبع الحالة،
+            وتوثيق العملية — مع تصميم بسيط يناسب المستخدمين.
+          </p>
+          <div class="cta">
+            <!-- placeholders until stores are ready -->
+            <a class="btn primary" href="#download">تحميل التطبيق (قريبًا)</a>
+            <a class="btn ghost" href="https://privacy.silsila.app" target="_blank" rel="noopener">سياسة الخصوصية</a>
+          </div>
+          <div class="meta">
+            <span>✅ تسجيل آمن عبر البريد (OTP)</span>
+            <span>✅ دعم عربي / English / اردو</span>
+            <span>✅ جاهز للتوسع</span>
+          </div>
+        </div>
+
+        <div class="card hero-right">
+          <div class="mock">
+            <span class="chip">Live status • لوحة متابعة</span>
+            <h3>لوحة مختصرة للمستخدم</h3>
+            <p>أهم البيانات أمامك: طلبات متاحة، طلبات نشطة، وحالة الشحنة — بدون تعقيد.</p>
+            <div class="bullets">
+              <div class="b"><strong>الشحنات المتاحة</strong><span class="tag">NEW</span></div>
+              <div class="b"><strong>الشحنات النشطة</strong><span class="tag">LIVE</span></div>
+              <div class="b"><strong>سجل العمليات</strong><span class="tag">LOG</span></div>
+            </div>
+          </div>
+          <div class="mock" style="min-height:auto;">
+            <span class="chip">For carriers & shippers</span>
+            <p style="margin-top:10px;">واجهة واضحة للطرفين: مالك بضاعة ومالك شاحنة — بنفس الأسلوب والتجربة.</p>
+          </div>
+        </div>
+      </div>
+
+      <section id="features" class="card" style="padding:18px;">
+        <h2 style="margin:0 0 8px;">المزايا الأساسية</h2>
+        <p style="margin:0 0 14px;color:var(--muted);font-weight:650;line-height:1.7;">
+          تركيزنا على تجربة استخدام قوية + قابلية توسع + أمان في البيانات.
+        </p>
+        <div class="grid3">
+          <div class="feat">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3l8 4.5v9L12 21 4 16.5v-9L12 3Z" stroke="white" stroke-width="1.6"/>
+                <path d="M12 12l8-4.5" stroke="white" stroke-width="1.6"/>
+                <path d="M12 12v9" stroke="white" stroke-width="1.6"/>
+                <path d="M12 12L4 7.5" stroke="white" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <h4>طلبات شحن منظمة</h4>
+            <p>إنشاء طلبات شحن بمعلومات واضحة، ثم يظهر الطلب للطرف الآخر مباشرة حسب الحالة.</p>
+          </div>
+          <div class="feat">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 12h16" stroke="white" stroke-width="1.6"/>
+                <path d="M12 4v16" stroke="white" stroke-width="1.6"/>
+                <path d="M7 7h10v10H7V7Z" stroke="white" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <h4>تتبع الحالة</h4>
+            <p>متابعة “متاح/نشط/مكتمل” بطريقة بديهية — مع واجهة سهلة للمستخدم.</p>
+          </div>
+          <div class="feat">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4Z" stroke="white" stroke-width="1.6"/>
+                <path d="M8 12l2.2 2.2L16.5 8" stroke="white" stroke-width="1.6"/>
+              </svg>
+            </div>
+            <h4>أمان وتحقق</h4>
+            <p>OTP للبريد + سياسات وصول للبيانات (RLS) لمنع أي وصول غير مصرح.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="how" class="split">
+        <div class="card" style="padding:18px;">
+          <h2 style="margin:0 0 8px;">كيف تعمل Silsila؟</h2>
+          <p style="margin:0;color:var(--muted);font-weight:650;line-height:1.7;">
+            1) يسجل المستخدم بالبريد. 2) ينشئ طلب الشحن. 3) الناقل يقبل الطلب.
+            4) يتم تتبع الحالة حتى التسليم. 5) تتم العملية بشكل موثق.
+          </p>
+        </div>
+        <div class="card" style="padding:18px;">
+          <h2 style="margin:0 0 8px;">مناسبة لمين؟</h2>
+          <p style="margin:0;color:var(--muted);font-weight:650;line-height:1.7;">
+            • ملاك البضائع • الناقلين • الشركات الصغيرة والمتوسطة • عمليات النقل بين المدن.
+          </p>
+        </div>
+      </section>
+
+      <section id="security" class="card" style="padding:18px;">
+        <h2 style="margin:0 0 8px;">الأمان (مهم جدًا)</h2>
+        <p style="margin:0;color:var(--muted);font-weight:650;line-height:1.7;">
+          مفاتيح حساسة ما تكون في الواجهة الأمامية. العمليات المالية والتحقق يتم من السيرفر.
+          البيانات محمية بسياسات وصول (RLS) + اتصال HTTPS.
+        </p>
+      </section>
+
+      <section id="faq" class="card faq">
+        <h2 style="margin:0 0 8px;">أسئلة شائعة</h2>
+        <details>
+          <summary>هل التطبيق جاهز للمتاجر؟</summary>
+          <p>نعم، وسيتم وضع روابط App Store و Google Play هنا بمجرد اعتماد النسخ النهائية.</p>
+        </details>
+        <details>
+          <summary>كيف يتم تسجيل الدخول؟</summary>
+          <p>بريد إلكتروني + تحقق (OTP) للتسجيل. وبعدها دخول باستخدام البريد وكلمة المرور، مع خيار “نسيت كلمة المرور”.</p>
+        </details>
+        <details>
+          <summary>وين ألقى سياسة الخصوصية؟</summary>
+          <p>على الرابط: <a href="https://privacy.silsila.app" target="_blank" rel="noopener">privacy.silsila.app</a></p>
+        </details>
+      </section>
+
+      <section id="download" class="card" style="padding:18px;">
+        <h2 style="margin:0 0 8px;">تحميل التطبيق</h2>
+        <p style="margin:0;color:var(--muted);font-weight:650;line-height:1.7;">
+          قريبًا سيتم وضع روابط التحميل الرسمية:
+        </p>
+        <div class="cta" style="margin-top:12px;">
+          <a class="btn ghost" href="#" onclick="alert('ضع رابط App Store هنا بعد الاعتماد');return false;">App Store</a>
+          <a class="btn ghost" href="#" onclick="alert('ضع رابط Google Play هنا بعد الاعتماد');return false;">Google Play</a>
+          <a class="btn primary" href="mailto:silsilacompany1@gmail.com">تواصل معنا</a>
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span id="y"></span> Silsila</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="https://privacy.silsila.app" target="_blank" rel="noopener">سياسة الخصوصية</a>
+          <a href="mailto:silsilacompany1@gmail.com">الدعم</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- EN -->
+    <div class="langsec ltr" id="sec-en">
+      <div class="hero">
+        <div class="card hero-left">
+          <div class="kicker"><span class="dot"></span> Launch-ready • Professional UX</div>
+          <h1>Manage road logistics — from request to delivery</h1>
+          <p class="sub">
+            Silsila connects shippers and carriers in one platform: create shipment requests, accept jobs,
+            track status, and keep operations documented — with a clean, user-friendly design.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#download">Get the app (soon)</a>
+            <a class="btn ghost" href="https://privacy.silsila.app" target="_blank" rel="noopener">Privacy Policy</a>
+          </div>
+          <div class="meta">
+            <span>✅ Secure email OTP</span>
+            <span>✅ Arabic / English / Urdu</span>
+            <span>✅ Scalable foundation</span>
+          </div>
+        </div>
+
+        <div class="card hero-right">
+          <div class="mock">
+            <span class="chip">Live status • Dashboard</span>
+            <h3>User-first dashboard</h3>
+            <p>Everything you need at a glance: available jobs, active shipments, and history.</p>
+            <div class="bullets">
+              <div class="b"><strong>Available shipments</strong><span class="tag">NEW</span></div>
+              <div class="b"><strong>Active shipments</strong><span class="tag">LIVE</span></div>
+              <div class="b"><strong>Activity log</strong><span class="tag">LOG</span></div>
+            </div>
+          </div>
+          <div class="mock" style="min-height:auto;">
+            <span class="chip">For carriers & shippers</span>
+            <p style="margin-top:10px;">Consistent UI for both roles — same experience, less confusion.</p>
+          </div>
+        </div>
+      </div>
+
+      <section id="features" class="card" style="padding:18px;">
+        <h2 style="margin:0 0 8px;">Core features</h2>
+        <p style="margin:0 0 14px;color:var(--muted);font-weight:650;line-height:1.7;">
+          Professional UX + scalable backend + security-first data access.
+        </p>
+        <div class="grid3">
+          <div class="feat">
+            <div class="icon" aria-hidden="true"></div>
+            <h4>Structured shipment requests</h4>
+            <p>Create clear shipment requests, then publish to the right party instantly.</p>
+          </div>
+          <div class="feat">
+            <div class="icon" aria-hidden="true"></div>
+            <h4>Status tracking</h4>
+            <p>Track “available / active / completed” with a simple, consistent UI.</p>
+          </div>
+          <div class="feat">
+            <div class="icon" aria-hidden="true"></div>
+            <h4>Security & verification</h4>
+            <p>Email OTP + RLS policies to prevent unauthorized data access.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="security" class="card" style="padding:18px;">
+        <h2 style="margin:0 0 8px;">Security</h2>
+        <p style="margin:0;color:var(--muted);font-weight:650;line-height:1.7;">
+          No sensitive keys in the frontend. Payments and verification must be server-side. Data protected with RLS + HTTPS.
+        </p>
+      </section>
+
+      <section id="download" class="card" style="padding:18px;">
+        <h2 style="margin:0 0 8px;">Download</h2>
+        <p style="margin:0;color:var(--muted);font-weight:650;line-height:1.7;">Store links will be added once approved:</p>
+        <div class="cta" style="margin-top:12px;">
+          <a class="btn ghost" href="#" onclick="alert('Add App Store link after approval');return false;">App Store</a>
+          <a class="btn ghost" href="#" onclick="alert('Add Google Play link after approval');return false;">Google Play</a>
+          <a class="btn primary" href="mailto:silsilacompany1@gmail.com">Contact</a>
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span class="yy"></span> Silsila</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="https://privacy.silsila.app" target="_blank" rel="noopener">Privacy</a>
+          <a href="mailto:silsilacompany1@gmail.com">Support</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- UR -->
+    <div class="langsec rtl" id="sec-ur">
+      <div class="hero">
+        <div class="card hero-left">
+          <div class="kicker"><span class="dot"></span> لانچ کے لیے تیار • پروفیشنل UX</div>
+          <h1>سڑک کے ذریعے نقل و حمل — درخواست سے ڈیلیوری تک</h1>
+          <p class="sub">
+            Silsila ایک پلیٹ فارم میں شپّر اور کیریئر کو جوڑتا ہے: شپمنٹ ریکویسٹ، قبولیت، اسٹیٹس ٹریکنگ،
+            اور آپریشنز کی دستاویزات — آسان اور واضح ڈیزائن کے ساتھ۔
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#download">ایپ حاصل کریں (جلد)</a>
+            <a class="btn ghost" href="https://privacy.silsila.app" target="_blank" rel="noopener">پرائیویسی پالیسی</a>
+          </div>
+          <div class="meta">
+            <span>✅ ای میل OTP</span>
+            <span>✅ عربی / English / اردو</span>
+            <span>✅ اسکیل ایبل بنیاد</span>
+          </div>
+        </div>
+
+        <div class="card hero-right">
+          <div class="mock">
+            <span class="chip">Live status • ڈیش بورڈ</span>
+            <h3>یوزر فرسٹ ڈیش بورڈ</h3>
+            <p>Available، Active، اور History — سب کچھ ایک جگہ۔</p>
+            <div class="bullets">
+              <div class="b"><strong>Available shipments</strong><span class="tag">NEW</span></div>
+              <div class="b"><strong>Active shipments</strong><span class="tag">LIVE</span></div>
+              <div class="b"><strong>Activity log</strong><span class="tag">LOG</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section id="security" class="card" style="padding:18px;">
+        <h2 style="margin:0 0 8px;">سیکیورٹی</h2>
+        <p style="margin:0;color:var(--muted);font-weight:650;line-height:1.7;">
+          حساس keys فرنٹ اینڈ میں نہیں۔ ادائیگی اور ویری فکیشن server-side ہونی چاہیے۔ RLS + HTTPS لازمی۔
+        </p>
+      </section>
+
+      <section id="download" class="card" style="padding:18px;">
+        <h2 style="margin:0 0 8px;">ڈاؤن لوڈ</h2>
+        <p style="margin:0;color:var(--muted);font-weight:650;line-height:1.7;">اسٹور لنکس approval کے بعد شامل کیے جائیں گے۔</p>
+        <div class="cta" style="margin-top:12px;">
+          <a class="btn ghost" href="#" onclick="alert('Approval کے بعد App Store link لگائیں');return false;">App Store</a>
+          <a class="btn ghost" href="#" onclick="alert('Approval کے بعد Google Play link لگائیں');return false;">Google Play</a>
+          <a class="btn primary" href="mailto:silsilacompany1@gmail.com">رابطہ</a>
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span class="yy"></span> Silsila</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="https://privacy.silsila.app" target="_blank" rel="noopener">پرائیویسی</a>
+          <a href="mailto:silsilacompany1@gmail.com">سپورٹ</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // year
+    document.getElementById('y').textContent = new Date().getFullYear();
+    document.querySelectorAll('.yy').forEach(el => el.textContent = new Date().getFullYear());
+
+    // language switch
+    const buttons = document.querySelectorAll('.lang button');
+    const sections = { ar: document.getElementById('sec-ar'), en: document.getElementById('sec-en'), ur: document.getElementById('sec-ur') };
+
+    function setLang(lang){
+      buttons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      Object.values(sections).forEach(s => s.classList.remove('active'));
+      sections[lang].classList.add('active');
+
+      // update document direction quickly
+      if(lang === 'en'){ document.documentElement.lang='en'; document.documentElement.dir='ltr'; }
+      else if(lang === 'ur'){ document.documentElement.lang='ur'; document.documentElement.dir='rtl'; }
+      else { document.documentElement.lang='ar'; document.documentElement.dir='rtl'; }
+      // keep topbar readable on mobile (nav is hidden anyway)
+      window.location.hash = ''; // avoid jumping to other language anchors
+    }
+
+    buttons.forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+  </script>
+</body>
+</html>
